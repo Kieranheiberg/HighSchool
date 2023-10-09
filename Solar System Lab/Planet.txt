@@ -1,0 +1,75 @@
+/*
+Kieran Heiberg
+1/22/20
+Solar System Lab
+*/
+
+public class Planet {
+   //fields
+   private String name;
+   private double mass;
+   private double orbDistance;
+   private double radius;
+ 
+   public Planet(String name, double mass, double orbDistance, double radius) { //constructor
+      this.name = name;
+      this.mass = mass;
+      this.orbDistance = orbDistance;
+      this.radius = radius;
+   }
+   
+   public Planet(double orbDistance) { //constructor if only orbital distance supplied
+      this("planet", 0.0, orbDistance, 0.0);
+   }
+   
+   public Planet() { //constructor if no values are supplied
+      this("planet", 0.0, 0.0, 0.0);
+   }
+   
+   //accessors
+   public String getName() { 
+      return this.name;
+   }
+   
+   public double getMass() {
+      return this.mass;
+   }
+   
+   public double getOrbDistance() {
+      return this.orbDistance;
+   }
+   
+   public double getRadius() {
+      return this.radius;
+   }
+   
+   //mutators
+   public void setMass (double newMass) {
+      if (newMass > 0) {
+         this.mass = newMass;
+      }
+   }
+   
+   public void setOrbDistance (double newOrbDistance) {
+      if (newOrbDistance > 0) {
+         this.orbDistance = newOrbDistance;
+      }
+   }
+   
+   public void setRadius (double newRadius) {
+      if (newRadius > 0) {
+         this.radius = newRadius;
+      }
+   }
+   
+   public void setName (String newName) {
+      if (!newName.equals("default")) {
+         this.name = newName;
+      }
+   }
+   
+   public String toString() { //called by default when planet object is printed in client code
+      return "\nPlanet " + this.name + " has a mass of " + this.mass + " kg, a radius of " + this.radius + " miles, and a orbital distance of " + orbDistance + " miles";
+   }
+   
+}

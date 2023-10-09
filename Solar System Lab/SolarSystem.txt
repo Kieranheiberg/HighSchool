@@ -1,0 +1,56 @@
+/*
+Kieran Heiberg
+1/22/20
+Solar System Lab
+*/
+
+import java.util.ArrayList;
+public class SolarSystem {
+   private ArrayList<Planet> melkyWay; //filed
+   
+   public SolarSystem (ArrayList<Planet> melkyWay) { //constructor
+      this.melkyWay = melkyWay;
+   }
+   
+   public String getAPlanet(String info) { //checks to see if planet user entered is equal to any of the planets in the array list
+      String result = "";
+      for (int i = 0; i < melkyWay.size(); i++) {
+         if (melkyWay.get(i).getName().toLowerCase().equals(info.toLowerCase())) {
+            result = melkyWay.get(i).toString();   
+         }
+      }
+      return result; //retyrns that planets to string method
+   }   
+   
+   //mutator to add planet
+   public void addPlanet(Planet name) {
+      this.melkyWay.add(name);
+   }         
+      
+   public String getClosest() { //finds closest planet to sun
+      String near = "";
+      if (melkyWay.size() > 0) { //makes sure solar system has planets in it
+         for (int i = 0; i < melkyWay.size() - 1; i++) { //checks each elemnet in array list to see if it is less than next element
+            if (melkyWay.get(i + 1).getOrbDistance() < melkyWay.get(i).getOrbDistance()) {
+               near = melkyWay.get(i + 1).getName();
+            }
+            else {
+               near = melkyWay.get(i).getName();
+            }
+         }
+      }
+      return "The closest planet to the sun is " + near + ".";
+   }
+   
+   public String toString() { //returns list of planets in solar system
+      String planetNames = "";
+      for (int i = 0; i < melkyWay.size(); i++) { //adds comma to end of each planet name
+         planetNames += melkyWay.get(i).getName() + ", ";
+      }
+      int lengthOfString = planetNames.length();
+      lengthOfString -= 2;
+      planetNames = planetNames.substring(0, lengthOfString); //cuts of last comma
+      return "The planets in Melky Way are " + planetNames;
+   }
+   
+}

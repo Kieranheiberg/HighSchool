@@ -1,0 +1,62 @@
+/*
+Kieran Heiberg
+22/1/20
+Solar System Lab
+*/
+
+import java.util.Scanner;
+import java.util.ArrayList;
+public class Astronomer {
+   public static void main (String args[]) {
+      Scanner scan = new Scanner(System.in);
+      ArrayList planets = new ArrayList<Planet>(); //creates array of planets
+      SolarSystem melkyWay = new SolarSystem(planets); //creates solar system         
+      Planet newPlanet = new Planet();   //creates new planet to be modified by user using scanner
+      //(name, mass, OrbDistance, radius) order of measurements
+      Planet Jupiter = new Planet("Jupiter", 1.90E27, 4.84E8, 43441); 
+      Planet Jarp = new Planet("Jarp", 6.39E23, 9.36E19, 1967245); //creates planets
+      Planet Shintire = new Planet("Shintire", 4.75E24, 291.0, 1.4E11);
+      Planet Earth = new Planet("Earth", 5.97E24, 9.30E9, 3958.8);
+      //adds planets to solar system
+      melkyWay.addPlanet(Jupiter);
+      melkyWay.addPlanet(Jarp);
+      melkyWay.addPlanet(Shintire); 
+      melkyWay.addPlanet(Earth);
+      System.out.print("Would you like to create a planet? ");
+      String yesOrNo = scan.next();           
+      if (yesOrNo.equals("yes")) {
+         createNewPlanet(newPlanet, scan, melkyWay); //sends default planet, scanner and solar system to create planet
+      }
+      System.out.print("Would you like to know the closest planet to the sun (yes or no)? ");
+      String closest = scan.next();
+      if (closest.equals("yes")) {
+         System.out.println(melkyWay.getClosest()); //finds closest planet
+      }
+      System.out.print("Would you like information about a planet? ");
+      String yesOrNoPlanet= scan.next(); 
+      if (yesOrNoPlanet.equals("yes")) {
+         System.out.print("\n" + melkyWay + "\nWhich Planet would you like information on? " );
+         String planetInfo = scan.next();
+         System.out.println(melkyWay.getAPlanet(planetInfo)); //prints information on specifc planet
+      }
+   }
+      
+   public static void createNewPlanet (Planet planet, Scanner scan, SolarSystem melkyWay) { //creates new planet
+      System.out.print("What is the mass of your planet (If unknown, enter negative number)? ");
+      double createNewMass = scan.nextDouble(); 
+      planet.setMass(createNewMass);           
+      System.out.print("What would you like the name of your planet to be (If unknown, enter type default)? ");
+      String newName = scan.next();
+      planet.setName(newName);             
+      System.out.print("What is the radius of your new planet (If unknown, enter negative number)? ");
+      double newRadius = scan.nextDouble();
+      planet.setRadius(newRadius);          
+      System.out.print("What is the orbital radius of your planet (If unknown, enter negative number)? ");
+      double newOrbDistance = scan.nextDouble();
+      planet.setOrbDistance(newOrbDistance);          
+      melkyWay.addPlanet(planet); //adds planet to solar system
+   }
+   
+}
+   
+   
